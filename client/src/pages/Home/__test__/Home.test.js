@@ -3,18 +3,25 @@ import Home from "../Home";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-it("should renders a text saying 'Bem vindo ao Chatroom', text explaining how it works, username input, interests input and a submit button", () => {
+it("should render site's name and description", () => {
     render(<Home />);
-    const text = screen.getByText(/Bem vindo ao Chatroom!/i);
-    const introText = screen.getByTestId("intro-text");
-    const usernameInput = screen.getByTestId("username-input");
-    const interestsInput = screen.getByTestId("interests-input");
-    const submitButton = screen.getByTestId("submit-button");
+    const name = screen.getByText(/Chatroom/i);
+    const description = screen.getByTestId("description");
 
-    expect(text).toBeInTheDocument();
-    expect(introText).toBeInTheDocument();
-    expect(usernameInput).toBeInTheDocument();
-    expect(interestsInput).toBeInTheDocument();
-    expect(submitButton).toBeInTheDocument();
-    expect(submitButton.textContent).toBe("Fazer novo amigo");
+    expect(name).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
+})
+
+it("should render a form with name field, interests field, file input and button", () => {
+    render(<Home />);
+    const nameField = screen.getByTestId("name-field");
+    const interestsField = screen.getByTestId("interests-field");
+    const profilePhotoInput = screen.getByTestId("profile-photo-input");
+    const newFriendButton = screen.getByTestId("new-friend-button");
+
+    expect(nameField).toBeInTheDocument();
+    expect(interestsField).toBeInTheDocument();
+    expect(profilePhotoInput).toBeInTheDocument();
+    expect(profilePhotoInput).toHaveAttribute("type", "file");
+    expect(newFriendButton).toBeInTheDocument();
 })
