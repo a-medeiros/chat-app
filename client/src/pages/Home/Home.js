@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import "./Home.css";
 import styled from "styled-components";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+    const [username, setUsername] = useState('');
+    const [interests, setInterests] = useState('');
     const [profilePhoto, setProfilePhoto] = useState("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.softdownload.com.br%2Fwp-content%2Fuploads%2F2018%2F03%2Fcomo_trocar_foto_perfil_facebook.jpg&f=1&nofb=1");
+    const [isUsernameEmpty, setIsUsernameEmpty] = useState(false);
+    const [isInterestsEmpty, setIsInterestsEmpty] = useState(false);
 
-    const uploadImage = (e) => {
+    const changeProfilePhoto = (e) => {
         const file = e.target.files[0];
 
         if(file) {
@@ -19,6 +23,22 @@ const Home = () => {
             reader.readAsDataURL(file);
         }
 
+    }
+
+    const handleJoinChat = (e) => {
+        if(!username) {
+            e.preventDefault();
+            setIsUsernameEmpty(true);
+        } else {
+            setIsUsernameEmpty(false);
+        }
+
+        if(!interests) {
+            e.preventDefault();
+            setIsInterestsEmpty(true);
+        } else {
+            setIsInterestsEmpty(false);
+        }
     }
 
     return (
@@ -38,22 +58,32 @@ const Home = () => {
                 <JoinChatForm>
                     <div className="input-field">
                         <label>Nome</label>
-                        <input placeholder="Ex: Felipe" data-testid="name-field" required />
+                        <input id="username" name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Ex: Felipe" data-testid="name-field" required autoFocus />
+                        {
+                            isUsernameEmpty ? <ErrorMessage>
+                                <p>Username cannot be empty!</p>
+                            </ErrorMessage> : null
+                        }
                     </div>
                     <div className="input-field">
                         <label>Quais são seus interesses?</label>
-                        <textarea placeholder="Ex: Filmes, esportes, games" data-testid="interests-field" required ></textarea>
+                        <textarea id="interests" name="interests" value={interests} onChange={e => setInterests(e.target.value)} placeholder="Ex: Filmes, esportes, games" data-testid="interests-field" required ></textarea>
+                        {
+                            isInterestsEmpty ? <ErrorMessage>
+                                <p>Interests cannot be empty!</p>
+                            </ErrorMessage> : null
+                        }
                     </div>
                     <div className="choose-photo">
-                        <label for="chooseProfilePhoto" >Escolha sua foto de perfil:</label>
-                        <input type="file" id="chooseProfilePhoto" name="chooseProfilePhoto" accept="image/*" onChange={uploadImage} data-testid="choose-profile-photo" />
+                        <label>Escolha sua foto de perfil:</label>
+                        <input type="file" id="chooseProfilePhoto" name="chooseProfilePhoto" accept="image/*" onChange={changeProfilePhoto} data-testid="choose-profile-photo" />
                         <span>Como sua foto vai ficar:</span>
                         <div className="profile-photo-preview">
                             <ProfilePhotoPreview src={profilePhoto} alt="Profile photo" /> 
                         </div>
                     </div>
-                    <Link to="/chat" >
-                        <JoinChatButton data-testid="new-friend-button">Fazer novo amigo<i className="fas fa-arrow-right"></i></JoinChatButton>
+                    <Link onClick={handleJoinChat} to={`/chat?username=${username}&interests=${interests}&profilephoto=${profilePhoto}`} >
+                        <JoinChatButton type="submit" data-testid="new-friend-button">Encontrar um novo amigo<i className="fas fa-arrow-right"></i></JoinChatButton>
                     </Link>
                 </JoinChatForm>
             </JoinChat>
@@ -106,4 +136,9 @@ const ProfilePhotoPreview = styled.img`
     height: 120px;
     object-fit: cover;
     border-radius: 100%;
+`
+
+const ErrorMessage = styled.div`
+    color: red;
+    font-size: 13px;
 `
