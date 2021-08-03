@@ -1,64 +1,69 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .chatroom {
-    text-align: center;
-    padding-top: 30px;
-    padding-bottom: 10px;
-}
-
-.description {
-    margin: 10px 20px; 
-}
-
-.description p {
-    font-size: 15px;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .input-field {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
 }
 
 .input-field label {
-    font-size: 15px;
+  font-size: 15px;
 }
 
-.input-field input, .input-field textarea {
-    width: 300px;
-    border: 1px solid lightgrey;
-    font-size: 14px;
-    outline: none;
-    padding: 5px;
-    font-family: 'Poppins', sans-serif;
+.input-field input,
+.input-field textarea {
+  width: 300px;
+  border: 1px solid lightgrey;
+  font-size: 14px;
+  outline: none;
+  padding: 5px;
+  font-family: "Poppins", sans-serif;
+}
+
+.select-room {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+.select-room select {
+  outline: none;
+  width: 200px;
 }
 
 .choose-photo {
-    width: 300px;
-    padding-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 5px;
+  width: 300px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
 }
 
 .choose-photo label {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .choose-photo input {
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .choose-photo span {
-    padding-bottom: 10px;
-    font-size: 14px;
+  padding-bottom: 10px;
+  font-size: 14px;
 }
 
 .profile-photo-preview {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
