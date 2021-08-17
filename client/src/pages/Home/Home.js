@@ -6,25 +6,8 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
-  const [profilePhoto, setProfilePhoto] = useState(
-    "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.softdownload.com.br%2Fwp-content%2Fuploads%2F2018%2F03%2Fcomo_trocar_foto_perfil_facebook.jpg&f=1&nofb=1"
-  );
   const [isUsernameEmpty, setIsUsernameEmpty] = useState(false);
   const [isRoomEmpty, setIsRoomEmpty] = useState(false);
-
-  const changeProfilePhoto = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = function () {
-        setProfilePhoto(reader.result);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleJoinChat = (e) => {
     if (!username) {
@@ -46,7 +29,7 @@ const Home = () => {
     <MainDiv>
       <JoinChat>
         <header className='chatroom'>
-          <h1>Chatroom</h1>
+          <h1>Batpapo</h1>
         </header>
         <JoinChatForm>
           <div className='input-field'>
@@ -92,24 +75,9 @@ const Home = () => {
               </ErrorMessage>
             ) : null}
           </div>
-          <div className='choose-photo'>
-            <label>Escolha sua foto de perfil:</label>
-            <input
-              type='file'
-              id='chooseProfilePhoto'
-              name='chooseProfilePhoto'
-              accept='image/*'
-              onClick={changeProfilePhoto}
-              data-testid='choose-profile-photo'
-            />
-            <span>Como sua foto vai ficar:</span>
-            <div className='profile-photo-preview'>
-              <ProfilePhotoPreview src={profilePhoto} alt='Profile photo' />
-            </div>
-          </div>
           <Link
             onClick={handleJoinChat}
-            to={`/chat?username=${username}&room=${room}&profilephoto=${profilePhoto}`}
+            to={`/chat?username=${username}&room=${room}`}
           >
             <JoinChatButton type='submit' data-testid='new-friend-button'>
               Encontrar um novo amigo<i className='fas fa-arrow-right'></i>
@@ -160,13 +128,6 @@ const JoinChatButton = styled.button`
   i {
     margin-left: 7px;
   }
-`;
-
-const ProfilePhotoPreview = styled.img`
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 100%;
 `;
 
 const ErrorMessage = styled.div`
