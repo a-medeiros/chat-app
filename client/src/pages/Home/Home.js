@@ -80,7 +80,7 @@ const Home = () => {
             to={`/chat?username=${username}&room=${room}`}
           >
             <JoinChatButton type='submit' data-testid='new-friend-button'>
-              Encontrar um novo amigo<i className='fas fa-arrow-right'></i>
+              Entrar na sala<i className='fas fa-arrow-right'></i>
             </JoinChatButton>
           </Link>
         </JoinChatForm>
