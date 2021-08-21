@@ -6,16 +6,12 @@ import queryString from "query-string";
 
 const Chat = () => {
   const socketRef = useRef();
-
   const [message, setMessage] = useState({
     username: "",
     text: "",
   });
-
   const [messages, setMessages] = useState([]);
-
   const messageInput = useRef();
-
   const { username, room } = queryString.parse(window.location.search);
 
   useEffect(() => {
@@ -25,6 +21,8 @@ const Chat = () => {
 
     socketRef.current.on("message", (message) => {
       outputMessage(message);
+      const chat = document.getElementById("chatScreen");
+      chat.scrollTop = chat.scrollHeight;
     });
 
     socketRef.current.on("new message", (message) => {
