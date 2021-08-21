@@ -105,6 +105,10 @@ const JoinChat = styled.main`
   border: 1px solid lightgrey;
   font-family: "Poppins", sans-serif;
   padding: 5px;
+
+  @media (max-width: 500px) {
+    width: 400px;
+  }
 `;
 
 const JoinChatForm = styled.form`

@@ -86,7 +86,7 @@ const Chat = () => {
           )}
         </ChatScreen>
         <SubmitMessageForm onSubmit={sendMessageOnSubmit}>
-          <LeaveTheChat onClick={leaveTheChat}>Sair da conversa</LeaveTheChat>
+          <LeaveTheChat onClick={leaveTheChat}>Sair</LeaveTheChat>
           <MessageInput
             ref={messageInput}
             id='message'
@@ -101,7 +101,7 @@ const Chat = () => {
             type='submit'
             data-testid='submit-message-button'
           >
-            Enviar
+            <i class="fas fa-paper-plane"></i>
           </SubmitMessageButton>
         </SubmitMessageForm>
       </ChatDiv>
@@ -127,6 +127,11 @@ const Room = styled.div`
   h2 {
     font-size: 35px;
   }
+
+  @media (max-width: 700px) {
+    width: 99%;
+  }
+
 `;
 
 const ChatDiv = styled.div`
@@ -135,6 +140,10 @@ const ChatDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 700px) {
+    width: 99%;
+  }
 `;
 
 const ChatScreen = styled.div`
@@ -143,9 +152,8 @@ const ChatScreen = styled.div`
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  // align-items: center;
   border-radius: 5px;
-  padding: 15px 25px;
+  padding: 10px 25px;
   margin: 7px 0px;
   background-color: #f1f1f1;
   border: 1px solid lightgrey;
@@ -154,7 +162,7 @@ const ChatScreen = styled.div`
 const Message = styled.div`
   display: flex;
   align-items: start;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   min-width: 40px;
   font-family: "Roboto", sans-serif;
   div {
@@ -169,11 +177,14 @@ const SubmitMessageForm = styled.form`
   justify-content: center;
   height: 10%;
   margin-bottom: 7px;
+
+  @media (max-width: 500px) {
+    height: 8%;
+  }
 `;
 
 const LeaveTheChat = styled.button`
-  width: 120px;
-  height: 94%;
+  width: 130px;
   margin: 2px;
   cursor: pointer;
   background-color: #b30000;
@@ -181,9 +192,14 @@ const LeaveTheChat = styled.button`
   border-radius: 3px;
   color: white;
   font-weight: bolder;
+  font-size: 17px;
   :hover {
     background-color: #cc0000;
     border: 1px solid #cc0000;
+  }
+
+  @media (max-width: 500px) {
+    width: 85px;
   }
 `;
 
@@ -210,6 +226,18 @@ const SubmitMessageButton = styled.button`
   :hover {
     background-color: #3399ff;
     border: 1px solid #3399ff;
+  }
+
+  i {
+    font-size: 20px;
+  }
+
+  @media (max-width: 500px) {
+    width: 80px;
+
+    i {
+      font-size: 17px;
+    }
   }
 `;
 

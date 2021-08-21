@@ -42,6 +42,10 @@
   width: 200px;
 }
 
+.select-room select option {
+  font-size: 15px;
+}
+
 .choose-photo {
   width: 300px;
   padding-bottom: 15px;
