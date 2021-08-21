@@ -29,7 +29,7 @@ const Home = () => {
     <MainDiv>
       <JoinChat>
         <header className='chatroom'>
-          <h1>Batpapo</h1>
+          <h1>BatPappo</h1>
         </header>
         <JoinChatForm>
           <div className='input-field'>
