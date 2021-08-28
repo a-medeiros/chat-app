@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 corsOptions = {
   cors: true,
-  origins: ["http://localhost:3000"],
+  origins: ["https://batpappo.netlify.app"],
 };
 const io = socketio(server, corsOptions);
 
