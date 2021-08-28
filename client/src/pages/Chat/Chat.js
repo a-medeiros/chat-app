@@ -15,7 +15,7 @@ const Chat = () => {
   const { username, room } = queryString.parse(window.location.search);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:8080");
+    socketRef.current = io("https://webchatt-application.herokuapp.com/");
 
     socketRef.current.emit("joinRoom", { username, room });
 
